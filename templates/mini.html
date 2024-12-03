@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mini.css') }}">
+    <title>Solar Irradiance Prediction</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Solar Irradiance Prediction</h1>
+        <form action="/predict" method="POST">
+            <label for="latitudes">Latitudes:</label>
+            <input type="text" id="latitudes" name="latitudes" required><br>
+            <label for="longitudes">Longitudes:</label>
+            <input type="text" id="longitudes" name="longitudes" required><br>
+            <label for="month">Month:</label>
+            <input type="text" id="month" name="month" required><br>
+            <label for="temperature">Temperature (°C):</label>
+            <input type="text" id="temperature" name="temperature" required><br>
+            <label for="dhi">DHI (W/m²):</label>
+            <input type="text" id="dhi" name="dhi" required><br>
+            <label for="dni">DNI (W/m²):</label>
+            <input type="text" id="dni" name="dni" required><br>
+            <label for="ghi">GHI (W/m²):</label>
+            <input type="text" id="ghi" name="ghi" required><br>
+            <label for="solar_zenith_angle">Solar Zenith Angle (Degrees):</label>
+            <input type="text" id="solar_zenith_angle" name="solar_zenith_angle" required><br>
+            <input type="submit" value="Predict">
+        </form>
+
+        {% if prediction is not none %}
+        <h2>Predicted Solar Irradiance: {{ prediction }}</h2>
+        <h3>Your Input Values:</h3>
+        <ul>
+            <li>Latitudes: {{ latitudes }}</li>
+            <li>Longitudes: {{ longitudes }}</li>
+            <li>Month: {{ month }}</li>
+            <li>Temperature: {{ temperature }}</li>
+            <li>DHI: {{ dhi }}</li>
+            <li>DNI: {{ dni }}</li>
+            <li>GHI: {{ ghi }}</li>
+            <li>Solar Zenith Angle: {{ solar_zenith_angle }}</li>
+        </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
